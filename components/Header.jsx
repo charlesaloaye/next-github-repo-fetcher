@@ -1,7 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import GithubLogo from "@/app/github.png";
 import Image from "next/image";
+import clsx from "clsx";
+
+import { usePathname } from "next/navigation";
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <>
       <nav className="bg-indigo-700 border-b border-indigo-500">
@@ -22,19 +29,28 @@ const Header = () => {
                 <div className="flex space-x-2">
                   <Link
                     href="/"
-                    className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                    className={clsx(`
+                    text-white  hover:bg-gray-900 hover:text-white rounded-md px-4 py-2 mb-1, {
+                    ${pathname === "/" && "bg-black"}
+                    }`)}
                   >
                     Home
                   </Link>
                   <Link
                     href="/code/repos"
-                    className="text-white  hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                    className={clsx(`
+                      text-white  hover:bg-gray-900 hover:text-white rounded-md px-4 py-2 mb-1, {
+                      ${pathname === "/code/repos" && "bg-black"}
+                      }`)}
                   >
                     Repos
                   </Link>
                   <Link
                     href="/about"
-                    className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                    className={clsx(`
+                      text-white  hover:bg-gray-900 hover:text-white rounded-md px-4 py-2 mb-1, {
+                      ${pathname === "/about" && "bg-black"}
+                      }`)}
                   >
                     About Us
                   </Link>
